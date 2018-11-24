@@ -31,6 +31,9 @@ class Generator(object):
         pixList = list()
         start = self.router.findNode(lat, lon)
         for pixel in pixels:
+            print('')
+            print("{}, {}".format(lat, lon))
+            print("{}, {}".format(pixel['lat'], pixel['lon']))
 
             end = self.router.findNode(pixel['lat'], pixel['lon'])
             status, route = self.router.doRoute(start, end) # Find the route - a list of OSM nodes
@@ -43,8 +46,8 @@ class Generator(object):
                 duration = dist * 1000 / self.speed
 
                 pixList.append({
-                    'lat': lat,
-                    'lon': lon,
+                    'lat': pixel['lat'],
+                    'lon': pixel['lon'],
                     't': duration
                 })
             else:
@@ -52,3 +55,7 @@ class Generator(object):
         if skipped > 0:
             print("Skipped {} points while routing.".format(skipped))
         return pixList
+
+#
+# gen = Generator()
+# print(gen.calc(52.266617, 10.519967, [{'lat': 52.262065, 'lon': 10.5115276}, {'lat':1, 'lon': 2}]))
