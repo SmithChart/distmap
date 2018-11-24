@@ -8,10 +8,12 @@ app = Flask(__name__)
 import json
 
 import layer
+import routing
 import cache
 
 
-generator = layer.DummyGenerator()
+#generator = layer.DummyGenerator()
+generator = routing.Generator("map")
 
 c = cache.Cache()
 
