@@ -7,6 +7,8 @@ import math
 class Cache(object):
 
     def __init__(self, file='resultcache.json'):
+        self.file = file
+
         try:
             with open(file) as fh:
                 self._cache = json.load(fh)
@@ -20,6 +22,9 @@ class Cache(object):
             "pixels": pixels
         })
 
+        with open(self.file, "w") as fh:
+            json.dump(self._cache, fh)
+
     def get_result(self, lat, lon, precision=9e-6*200):
         for c in self._cache:
             dlat = lat - c["lat"]
@@ -27,7 +32,7 @@ class Cache(object):
             d = math.sqrt(dlat**2 + dlon**2)
 
             if d < precision:
-                return c
+                return c["pixels"]
 
         else:
             return None
