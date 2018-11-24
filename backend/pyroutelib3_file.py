@@ -229,7 +229,7 @@ class Datastore:
         if hasattr(file, "read"): fp = file
 
         # If not assume that "file" is a path to file
-        else: fp = open(os.fspath(file), "r", encoding="utf-8")
+        else: fp = open(file, "r", encoding="utf-8")
 
         try:
             for event, elem in etree.iterparse(fp):
