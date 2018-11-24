@@ -41,9 +41,9 @@ class Generator(object):
 
                 duration = dist * 1000 / self.speed
 
-            pixList.append({
-                'lat': lat,
-                'lon': lon,
-                't': duration
-            })
+                pixList.append({
+                    'lat': lat,
+                    'lon': lon,
+                    't': duration
+                })
         return pixList
