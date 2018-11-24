@@ -22,19 +22,26 @@ def root(lat, lon, options=None):
     # for now we assume to have a view port of 2x2km²
     # also we assume to have 11x11 pixels
     count = 11
-    # this creates a pixel-size of:
-    pixlength = 2000/10
-    # run all generators and get travel times
-    results = []
 
+    # 1m ~ 9e-6°
+    offset = 9e-6 * 200
+
+    # generate output pixels
+    pixels= []
+    for dlat in range(-4,5):
+        for dlon in range(-4, 5):
+            pixels.append({
+                "lat": lat+dlat*offset,
+                "lon": lon+dlon*offset
+            })
+
+    results = []
     for g in generators:
-        results.append((g.name, g.calc(lat, lon, count, pixlength, options)))
+        results.append((g.name, g.calc(lat, lon, pixels)))
 
     # create return value
     r = {}
     r["center"] = {"lat":lat, "lon":lon}
-    r["options"] = options
-    r["pixlength"] = pixlength
     r["pixlist"] = results[0][1]
     return Response(json.dumps(r), mimetype='application/json')
 
