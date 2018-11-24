@@ -12,7 +12,7 @@ import layer
 generators = []
 generators.append(layer.DummyGenerator())
 
-@app.route("/distance/<lat>/<lon>/<options>")
+@app.route("/distance/<lat>/<lon>")
 def root(lat, lon, options):
     lat = float(lat)
     lon = float(lon)
