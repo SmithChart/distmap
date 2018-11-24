@@ -27,6 +27,7 @@ class Generator(object):
         return earthRadiusKm * c
 
     def calc(self,lat, lon, pixels):
+        skipped = 0
         pixList = list()
         start = self.router.findNode(lat, lon)
         for pixel in pixels:
@@ -46,4 +47,8 @@ class Generator(object):
                     'lon': lon,
                     't': duration
                 })
+            else:
+                skipped += 1
+        if skipped > 0:
+            print("Skipped {} points while routing.".format(skipped))
         return pixList
