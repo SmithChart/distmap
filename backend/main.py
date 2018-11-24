@@ -2,7 +2,7 @@
 
 from flask import Flask
 from flask import Response
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 app = Flask(__name__)
 
 import json
@@ -15,7 +15,7 @@ generators.append(layer.DummyGenerator())
 
 @app.route("/distance/<lat>/<lon>")
 @cross_origin()
-def root(lat, lon, options):
+def root(lat, lon, options=None):
     lat = float(lat)
     lon = float(lon)
 
