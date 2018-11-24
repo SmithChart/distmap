@@ -1,2 +1,3 @@
 flask
 pyroutelib3
+flask-cors

@@ -17,22 +17,30 @@ class DummyGenerator(object):
     # speed in m/s
     speed = 0.833
 
-    def calc(self, lat, lon, count, pixlength, options):
+    # deg to len factor: [°/m]
+    dtlf = 9e-6
+
+    def calc(self, lat, lon, pixels):
+        """
+        Arguments:
+        * lat, lon: Startpunkt
+        * pixels: Liste von Endpunkten
+        """
         import math
 
-        pixlist = []
-        edge = int((count-1)/2)
-        for x in range(-1*edge, edge+1):
-            for y in range(-1*edge, edge+1):
-                print("x: {}, y: {}".format(x,y))
-                dist = math.sqrt((x*pixlength)**2+(y*pixlength)**2)
-                dist *= self.multiplier
-                duration = dist/self.speed
-                pixlist.append((
-                    x * pixlength,
-                    y * pixlength,
-                    duration
-                ))
+        result = []
 
-        return pixlist
+        for p in pixels:
+            dlat = lat-p["lat"]/self.dtlf
+            dlon = lon-p["lon"]/self.dtlf
+            d = math.sqrt(dlat**2 + dlon**2)*self.multiplier
+            duration = d / self.speed
+
+            result.append({
+                "lat": p["lat"],
+                "lon": p["lon"],
+                "t": duration
+            })
+
+        return result
 
