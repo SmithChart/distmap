@@ -1,5 +1,6 @@
 import pyroutelib3_file as pyr
 import math
+import numpy as np
 import os
 
 class Generator(object):
@@ -7,7 +8,7 @@ class Generator(object):
     def __init__(self, osm_path = '/home/stefan/Downloads/map (2)', speed = 0.833, vehicle = 'car'):
         self.name = "Generator"
         self.osm_path = osm_path
-        self.router = pyr.Router(vehicle, osm_path)
+        self.router = pyr.Router(vehicle)#, osm_path)
         self.speed = speed
 
     def distanceInKmBetweenEarthCoordinates(self, lat1, lon1, lat2, lon2):
@@ -54,8 +55,30 @@ class Generator(object):
                 skipped += 1
         if skipped > 0:
             print("Skipped {} points while routing.".format(skipped))
-        return pixList
+
+
+        # sort by angle
+        list_to_sort = list()
+        for pix in pixList:
+            dot_product = pix['lat'] * lat + pix['lon'] * lon
+            len_p1 = math.sqrt(pix['lat']**2 + pix['lon']**2)
+            len_p2 = math.sqrt(lat**2 + lon**2)
+            list_to_sort.append((pix['lat'], pix['lon'], pix['t'],math.acos(dot_product / (len_p1 * len_p2))))
+
+        dtype = [('lat', float), ('lon', float), ('t', float), ('angle', float)]
+        array_to_sort = np.array(list_to_sort, dtype)
+        array_to_sort.sort(order=['lat', 'lon'])
+
+        print(array_to_sort)
+
+        list_to_return = list()
+        for tuple in array_to_sort:
+            list_to_return.append({tuple[0], tuple[1], tuple[2]})
+
+
+        return list_to_return
+        #return pixList
 
 #
-# gen = Generator()
-# print(gen.calc(52.266617, 10.519967, [{'lat': 52.262065, 'lon': 10.5115276}, {'lat':1, 'lon': 2}]))
+gen = Generator()
+print(gen.calc(52.268725, 10.510546, [{'lat': 52.267041, 'lon': 10.514387}, {'lat':52, 'lon': 10}]))

@@ -1,3 +1,4 @@
+tilescache/
 *.pyc
 map*
 resultcache.json

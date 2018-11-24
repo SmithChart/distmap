@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<osm version="0.6" generator="CGImap 0.6.1 (13178 thorn-03.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+<osm version="0.6" generator="CGImap 0.6.1 (11872 thorn-03.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
  <bounds minlat="52.2614336" minlon="10.5139160" maxlat="52.2681574" maxlon="10.5249023"/>
  <node id="26154023" visible="true" version="11" changeset="11546025" timestamp="2012-05-09T05:41:32Z" user="erge50" uid="393959" lat="52.2669107" lon="10.5157818"/>
  <node id="26154024" visible="true" version="13" changeset="35904024" timestamp="2015-12-12T07:57:57Z" user="poschon" uid="1719211" lat="52.2668113" lon="10.5164493"/>
@@ -12343,8 +12343,9 @@
   <tag k="public_transport" v="stop_position"/>
   <tag k="ref" v="411;413;416;418;422;443;450;480;560"/>
  </node>
- <node id="4397192314" visible="true" version="4" changeset="62174028" timestamp="2018-08-31T14:03:46Z" user="schluri123" uid="8459910" lat="52.2659602" lon="10.5172749">
+ <node id="4397192314" visible="true" version="5" changeset="64848348" timestamp="2018-11-24T16:38:15Z" user="ENT8R" uid="3755477" lat="52.2659602" lon="10.5172749">
   <tag k="bus" v="yes"/>
+  <tag k="highway" v="bus_stop"/>
   <tag k="local_ref" v="B"/>
   <tag k="name" v="Hintern Brüdern"/>
   <tag k="network" v="Verbundtarif Region Braunschweig (VRB)"/>
