@@ -43,6 +43,7 @@ from warnings import warn
 from datetime import datetime
 from collections import OrderedDict
 from urllib.request import urlretrieve
+import pickle
 
 __title__ = "pyroutelib3"
 __description__ = "Library for simple routing on OSM data"
@@ -223,6 +224,10 @@ class Datastore:
         """Return nodes, ways and realations of given file
            Only highway=* and railway=* ways are returned, and
            only type=restriction (and type=restriction:<transport type>) are returned"""
+
+        if os.path.exists(file + '.pickle'):
+            return pickle.load(file + '.pickle')
+
         nodes, ways, relations = {}, {}, {}
 
         # Check if a file-like object was passed
@@ -249,9 +254,13 @@ class Datastore:
                     data["member"] = [self._attributes(i) for i in elem.iter("member")]
                     relations[data["id"]] = data
 
+
         finally:
             # Close file if a path was passed
             if not hasattr(file, "read"): fp.close()
+
+        # pickle the return data
+        pickle.dump([nodes, ways, relations], open(file + '.pickle'), 'wb')
 
         return nodes, ways, relations
 
