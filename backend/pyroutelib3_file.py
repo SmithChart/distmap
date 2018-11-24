@@ -226,7 +226,7 @@ class Datastore:
            only type=restriction (and type=restriction:<transport type>) are returned"""
 
         if os.path.exists(file + '.pickle'):
-            return pickle.load(file + '.pickle')
+            return pickle.load(open(file + '.pickle', 'rb'))
 
         nodes, ways, relations = {}, {}, {}
 
@@ -260,7 +260,7 @@ class Datastore:
             if not hasattr(file, "read"): fp.close()
 
         # pickle the return data
-        pickle.dump([nodes, ways, relations], open(file + '.pickle'), 'wb')
+        pickle.dump([nodes, ways, relations], open(file + '.pickle', 'wb+'))
 
         return nodes, ways, relations
 
