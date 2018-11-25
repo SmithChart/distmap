@@ -13,7 +13,7 @@ Distmap was created by the distmap working group during the
 This project consists of three parts:
 
 * backend (this repo)
-* frontend
+* frontend https://github.com/SmithChart/distmap-frontend
 * documentation
 
 
