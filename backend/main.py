@@ -35,7 +35,7 @@ def root(lat, lon, options=None):
         for dlat in range(-1*side,side+1):
             for dlon in range(-1*side, side+1):
                 pixels.append({
-                    "lat": lat+dlat*offset,
+                    "lat": lat+dlat*offset*0.7,
                     "lon": lon+dlon*offset
                 })
 
