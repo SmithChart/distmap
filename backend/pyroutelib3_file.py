@@ -539,7 +539,7 @@ class Router(Datastore):
 
         # Limit for how long it will search
         count = 0
-        while count < 1000000:
+        while count < 10000:
             count += 1
             _closeNode = True
 
