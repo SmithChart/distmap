@@ -20,7 +20,6 @@ def route_calculation(input_list):
             'lon': pixel['lon'],
             't': duration
         }
-    return None
 
 def distanceInKmBetweenEarthCoordinates(lat1, lon1, lat2, lon2):
     def degreesToRadians(degrees):
@@ -46,8 +45,6 @@ class Generator(object):
         self.router = pyr.Router(vehicle, osm_path)
         self.speed = speed
 
-
-
     def calc(self,lat, lon, pixels):
         skipped = 0
         pixList = list()
@@ -58,7 +55,7 @@ class Generator(object):
         with Pool(5) as p:
             a = p.map(route_calculation, [[pixel, start, router, speed] for pixel in pixels])
 
-        return a
+        return [item for item in a if item is not None]
 
 
         #     print('')
