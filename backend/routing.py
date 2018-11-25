@@ -43,7 +43,7 @@ class Generator(object):
     def __init__(self, osm_path = '/home/stefan/Downloads/map (2)', speed = 0.833, vehicle = 'car'):
         self.name = "Generator"
         self.osm_path = osm_path
-        self.router = pyr.Router(vehicle), osm_path)
+        self.router = pyr.Router(vehicle, osm_path)
         self.speed = speed
 
 
