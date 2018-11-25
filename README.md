@@ -19,9 +19,17 @@ This project consists of three parts:
 
 ## How to run the backend
 
-``
+You need to have an osm map next to your main.py:
+
+```bash
+wget https://overpass-api.de/api/map?bbox=10.4320,52.2083,10.6717,52.3066 -O map
+```
+
+Afterwards you can install the python3-dependencies and run the server:
+
+```bash
 python3 -m venv venv
-sourve venv/bin/activate 
+source venv/bin/activate 
 pip install -r requirements-backend.txt
 ./main.py 
-``
+```
