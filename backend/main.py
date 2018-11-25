@@ -25,17 +25,15 @@ def root(lat, lon, options=None):
 
     cache_result = c.get_result(lat, lon)
     if cache_result is None:
-        # for now we assume to have a view port of 2x2km²
-        # also we assume to have 11x11 pixels
-        count = 11
+        side = 10
 
         # 1m ~ 9e-6°
-        offset = 9e-6 * 200
+        offset = 9e-6 * 100
 
         # generate output pixels
         pixels= []
-        for dlat in range(-4,5):
-            for dlon in range(-4, 5):
+        for dlat in range(-1*side,side+1):
+            for dlon in range(-1*side, side+1):
                 pixels.append({
                     "lat": lat+dlat*offset,
                     "lon": lon+dlon*offset
